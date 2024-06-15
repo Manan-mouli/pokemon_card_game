@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .preview1{
+            display: flex;
+            flex-wrap: wrap;
+            height: 40%;
+            
+        }
+        img{
+            margin: 5px;
+            height: 20rem
+        }
+        .battle_field{
+            height: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .score{
+            height: 20%;
+        }
+    </style>
 </head>
 <body>
-    <img src= <%= images1%>>
-    <img src= <%= images2 %>>
+    <div class="score"></div>
+    <div class="battle_field">
+        <h1>battle_field</h1>
+    </div>
+    <div class="preview1">
+        <img src= <%= images1%>>
+        <img src= <%= images2 %>>
+        <img src= <%= images3%>>
+        <img src= <%= images4 %>>
+        <img src= <%= images5%>>
+        <img src= <%= images6 %>>
+        <img src= <%= images7%>>
+        <img src= <%= images8 %>>
+        <img src= <%= images9%>>
+        <img src= <%= images10 %>>
+    </div>
 </body>
 </html>
