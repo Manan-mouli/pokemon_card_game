@@ -25,5 +25,25 @@ li{
     color: aliceblue;
 }
 .body_{
-    background-color: beige;
+    height: fit-content;
+    height: 100vh;
+    background-image: url(images/img\ 4.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0.5;
+}
+.b_centre{
+
+    
+}
+.text{
+    opacity: 2;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    padding-bottom: 30px;
 }

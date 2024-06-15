@@ -3,45 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokemon Game</title>
     <style>
-        .preview1{
+        .preview1 {
             display: flex;
             flex-wrap: wrap;
             height: 40%;
-            
         }
-        img{
+        .card-container {
             margin: 5px;
-            height: 20rem
+            text-align: center;
         }
-        .battle_field{
+        img {
+            height: 20rem;
+        }
+        .battle_field {
             height: 40%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .score{
+        .score {
             height: 20%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="score"></div>
+    <div class="score">
+        <h2>Score</h2>
+        <p>Player: <span id="player-score">0</span> - AI: <span id="ai-score">0</span></p>
+    </div>
     <div class="battle_field">
-        <h1>battle_field</h1>
+        <div>
+            <h1>Battle Field</h1>
+            <div id="player-card"></div>
+            <div id="ai-card"></div>
+        </div>
     </div>
     <div class="preview1">
-        <img src= <%= images1%>>
-        <img src= <%= images2 %>>
-        <img src= <%= images3%>>
-        <img src= <%= images4 %>>
-        <img src= <%= images5%>>
-        <img src= <%= images6 %>>
-        <img src= <%= images7%>>
-        <img src= <%= images8 %>>
-        <img src= <%= images9%>>
-        <img src= <%= images10 %>>
+        <% images.forEach((image, index) => { %>
+            <div class="card-container" data-index="<%= index %>">
+                <img src="<%= image %>">
+                <button onclick="selectCard(<%= index %>)">Select</button>
+            </div>
+        <% }) %>
     </div>
+    <script>
+        const playerCards = <%- JSON.stringify(images) %>;
+        const aiCards = <%- JSON.stringify(aiImages) %>;
+        const playerScores = <%- JSON.stringify(playerScores) %>;
+        const aiScores = <%- JSON.stringify(aiScores) %>;
+        let playerScore = 0;
+        let aiScore = 0;
+
+        function selectCard(index) {
+            // Display player card
+            const playerCardContainer = document.getElementById('player-card');
+            playerCardContainer.innerHTML = `<img src="${playerCards[index]}" style="height: 20rem;">`;
+
+            // Randomly select AI card
+            const aiIndex = Math.floor(Math.random() * aiCards.length);
+            const aiCardContainer = document.getElementById('ai-card');
+            aiCardContainer.innerHTML = `<img src="${aiCards[aiIndex]}" style="height: 20rem;">`;
+
+            // Compare scores and update
+            const playerCardScore = playerScores[index];
+            const aiCardScore = aiScores[aiIndex];
+            if (playerCardScore > aiCardScore) {
+                playerScore++;
+            } else if (aiCardScore > playerCardScore) {
+                aiScore++;
+            }
+
+            // Update scores
+            document.getElementById('player-score').textContent = playerScore;
+            document.getElementById('ai-score').textContent = aiScore;
+
+            // Remove used cards
+            playerCards.splice(index, 1);
+            playerScores.splice(index, 1);
+            aiCards.splice(aiIndex, 1);
+            aiScores.splice(aiIndex, 1);
+
+            // Remove the card container from preview
+            document.querySelectorAll('.card-container').forEach((container, i) => {
+                if (parseInt(container.getAttribute('data-index')) === index) {
+                    container.remove();
+                } else if (parseInt(container.getAttribute('data-index')) > index) {
+                    container.setAttribute('data-index', parseInt(container.getAttribute('data-index')) - 1);
+                }
+            });
+
+            // Check if deck is empty
+            if (playerCards.length === 0) {
+                if (playerScore > aiScore) {
+                    alert("You win!");
+                } else if (aiScore > playerScore) {
+                    alert("Bot wins!");
+                } else {
+                    alert("It's a draw!");
+                }
+            }
+        }
+    </script>
 </body>
 </html>
