@@ -1,0 +1,28 @@
+.preview1{
+    display: flex;
+    flex-wrap: wrap;
+    height: 40%;
+}
+img{
+margin: 5px;
+height: 20rem
+}
+.battle_field{
+height: 40%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.score{
+height: 20%;
+}
+.player_card{
+background-image: url(./images/player.jpg);
+height: 8.8cm;
+width: 6.3cm;
+}
+.ai_card{
+background-image: url(./images/ai.jpg);
+height: 8.8cm;
+width: 6.3cm;
+}

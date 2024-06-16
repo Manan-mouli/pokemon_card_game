@@ -32,16 +32,16 @@ app.get("/game", async (req, res) => {
         randomCards1 = cardset1(pokemons);
         randomCards2 = cardset2(pokemons);
 
-        const images = randomCards2.slice(0, 10).map(card => card.images.small);
-        const aiImages = randomCards1.slice(0, 10).map(card => card.images.small);
-        const playerScores = randomCards2.slice(0, 10).map(card => card.hp);
-        const aiScores = randomCards1.slice(0, 10).map(card => card.hp);
+        const images = img_player(randomCards2);
+        const aiImages = img_ai(randomCards1);
+        const playerShp = p_hp(randomCards2);
+        const aihp =  ai_hp(randomCards1);
+        const playerScores = [];
+        const aiScores = [];
 
-        res.render("image", {
-            images,
-            aiImages,
-            playerScores,
-            aiScores
+
+        res.render("image.ejs", {
+            images_: images
         });
     } catch (error) {
         console.error("Error fetching Pokémon cards:", error);
@@ -52,7 +52,7 @@ app.get("/game", async (req, res) => {
 function cardset1(list) {
     const card_set = [];
     const totalCards = list.length;
-    const numCards = 20;
+    const numCards = 10;
 
     for (let i = 0; i < numCards; i++) {
         const randomIndex = Math.floor(Math.random() * totalCards);
@@ -65,7 +65,7 @@ function cardset1(list) {
 function cardset2(list) {
     const card_set1 = [];
     const totalCards = list.length;
-    const numCards = 20;
+    const numCards = 10;
 
     for (let i = 0; i < numCards; i++) {
         const randomIndex = Math.floor(Math.random() * totalCards);
@@ -73,6 +73,34 @@ function cardset2(list) {
     }
 
     return card_set1;
+}
+function img_ai(list){
+    const img_ai =[];
+    for(var i =0;i<list.length;i++){
+        img_ai.push(list[i].images.small);
+    }
+    return img_ai;
+}
+function img_player(list){
+    const img_player =[];
+    for(var i =0;i<list.length;i++){
+        img_player.push(list[i].images.small);
+    }
+    return img_player;
+}
+function ai_hp(list){
+    const ai_hp = [];
+    for(var i =0;i<list.length;i++){
+        ai_hp.push(list[i].hp);
+    }
+    return ai_hp;
+}
+function p_hp(list){
+    const p_hp = [];
+    for(var i =0;i<list.length;i++){
+        p_hp.push(list[i].hp);
+    }
+    return p_hp;
 }
 
 app.listen(port, () => {
