@@ -10,8 +10,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 let pokemons = "";
 let randomCards1 = "";
 let randomCards2 = "";
-let score1 = 0;
-let score2 = 0;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -36,12 +34,13 @@ app.get("/game", async (req, res) => {
         const aiImages = img_ai(randomCards1);
         const playerShp = p_hp(randomCards2);
         const aihp =  ai_hp(randomCards1);
-        const playerScores = [];
-        const aiScores = [];
 
 
         res.render("image.ejs", {
-            images_: images
+            images_: images,
+            aiImages_: aiImages,
+            playerShp_:playerShp,
+            aihp_:aihp
         });
     } catch (error) {
         console.error("Error fetching Pokémon cards:", error);

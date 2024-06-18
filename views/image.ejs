@@ -8,23 +8,55 @@
     <link rel="stylesheet" href="./styles_2.css">
 </head>
 <body>
-    <div class="score"></div>
+    <div class="score"><h4>you = </h4><h4 id="p_score">0</h4> <h4> ai = </h4><h4 id="ai_score">0</h4></div>
     <div class="battle_field">
         <div class="player_card"></div>
         <div class="ai_card"></div>
     </div>
     <%images_ %>
     <div class="preview1">
-        <img src= <%= images_[0]%>>
-        <img src= <%= images_[1] %>>
-        <img src= <%= images_[2]%>>
-        <img src= <%= images_[3] %>>
-        <img src= <%= images_[4]%>>
-        <img src= <%= images_[5] %>>
-        <img src= <%= images_[6]%>>
-        <img src= <%= images_[7] %>>
-        <img src= <%= images_[8]%>>
-        <img src= <%= images_[9] %>>
+        <img id="id0" src="<%= images_[0] %>" onclick="main_func(0)">
+        <img id="id1" src="<%= images_[1] %>" onclick="main_func(1)">
+        <img id="id2" src="<%= images_[2] %>" onclick="main_func(2)">
+        <img id="id3" src="<%= images_[3] %>" onclick="main_func(3)">
+        <img id="id4" src="<%= images_[4] %>" onclick="main_func(4)">
+        <img id="id5" src="<%= images_[5] %>" onclick="main_func(5)">
+        <img id="id6" src="<%= images_[6] %>" onclick="main_func(6)">
+        <img id="id7" src="<%= images_[7] %>" onclick="main_func(7)">
+        <img id="id8" src="<%= images_[8] %>" onclick="main_func(8)">
+        <img id="id9" src="<%= images_[9] %>" onclick="main_func(9)">
+
     </div>
 </body>
+<script>
+    var aiImages =   '<%= aiImages_ %>';
+    var aihp=   '<%=aihp_ %>';
+    var p_img =   '<%= images_ %>';
+    var php =   '<%= playerShp_ %>';
+
+    //main_func
+    function main_func(index,aiImages,aihp,php,p_img){
+        card_remover(index);
+        playercard(p_img);
+        aicard(aiImages);
+        score_end_game(aihp,php);
+    }
+
+    //removing the cards
+    function card_remover(index){
+        const ids = ["id0","id1","id2","id3","id4","id5","id6","id7","id8","id9"];
+        const c_id = ids[index];
+        document.getElementById(c_id).style.visibility= "hidden";
+    }
+    //cards in the battle field
+    function playercard(p_img){
+
+    }
+
+    function aicard(aiImages){
+
+    }
+    //setting up score and ending of the game
+    function score_end_game(aihp,php){}
+</script>
 </html>
