@@ -16,12 +16,12 @@ justify-content: center;
 .score{
 height: 20%;
 }
-.player_card{
-background-image: url(./images/player.jpg);
-height: 8.8cm;
-width: 6.3cm;
+#player_card {
+    background-image: url(./images/player.jpg);
+    height: 8.8cm;
+    width: 6.3cm;
 }
-.ai_card{
+#ai_card{
 background-image: url(./images/ai.jpg);
 height: 8.8cm;
 width: 6.3cm;

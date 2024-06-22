@@ -34,13 +34,16 @@ app.get("/game", async (req, res) => {
         const aiImages = img_ai(randomCards1);
         const playerShp = p_hp(randomCards2);
         const aihp =  ai_hp(randomCards1);
+        const images2 = img_player(randomCards2);
 
 
         res.render("image.ejs", {
             images_: images,
             aiImages_: aiImages,
             playerShp_:playerShp,
-            aihp_:aihp
+            aihp_:aihp,
+            images__: images,
+            imc :images2
         });
     } catch (error) {
         console.error("Error fetching Pokémon cards:", error);

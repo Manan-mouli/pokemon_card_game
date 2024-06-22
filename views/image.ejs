@@ -10,8 +10,8 @@
 <body>
     <div class="score"><h4>you = </h4><h4 id="p_score">0</h4> <h4> ai = </h4><h4 id="ai_score">0</h4></div>
     <div class="battle_field">
-        <div class="player_card"></div>
-        <div class="ai_card"></div>
+        <div id="player_card"></div>
+        <div id="ai_card"></div>
     </div>
     <%images_ %>
     <div class="preview1">
@@ -31,13 +31,19 @@
 <script>
     var aiImages =   '<%= aiImages_ %>';
     var aihp=   '<%=aihp_ %>';
-    var p_img =   '<%= images_ %>';
+    var p_img =   '<%= images__ %>';
     var php =   '<%= playerShp_ %>';
+    var p_s = 0;
+    var ai_s = 0;
+    var img_copy = '<%= imc %>';
 
     //main_func
-    function main_func(index,aiImages,aihp,php,p_img){
+    function main_func(index){
+        main_fun(index, aiImages, aihp, php, p_img);
+    }
+    function main_fun(index,aiImages,aihp,php,p_img){
         card_remover(index);
-        playercard(p_img);
+        playercard(p_img,index);
         aicard(aiImages);
         score_end_game(aihp,php);
     }
@@ -49,14 +55,28 @@
         document.getElementById(c_id).style.visibility= "hidden";
     }
     //cards in the battle field
-    function playercard(p_img){
-
+    function playercard(p_img , index){
+        console.log("Changing background image to:", p_img[index]);
+        document.getElementById("player_card").style.backgroundImage = `url(${img_copy[index]})`;
     }
 
     function aicard(aiImages){
 
     }
     //setting up score and ending of the game
-    function score_end_game(aihp,php){}
+    function score_end_game(aihp,php,index,index_){
+        if (aihp[index_]>php[index]){
+            ai_s +=1;
+        }
+        else if (php[index]>aihp[index_]){
+            p_s +=1;
+        }
+        else{
+            ai_s +=1;
+            p_s +=1;
+        }
+        document.getElementById("p_score").innerHTML = p_s;
+        document.getElementById("ai_score").innerHTML = ai_s;
+    }
 </script>
 </html>
